@@ -11,6 +11,7 @@ public class App extends SimpleApplication {
 	public static void main(String[] args) {
 		App app = new App();
 		app.start();
+		System.out.println("asd");
 	}
 
 	@Override
