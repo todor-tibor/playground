@@ -57,11 +57,10 @@ function loadMessages(){
 	messagesRef.off();
 	
 	var loadMessagesFunc = function(data) {
-		var val = data.val();
-		var para = document.createElement("P");                       // Create a <p> element
-		var t = document.createTextNode(val.text);       // Create a text node
-		para.appendChild(t);                                          // Append the text to <p>
-		document.body.appendChild(para);                              // Append <p> to <body>
+		var messageTable = document.getElementById('messagetable');
+		var row = messageTable.insertRow(0);
+		var cell1 = row.insertCell(0);
+		cell1.innerHTML = data.val().text;
 	}.bind(this);
 
 	messagesRef.on('child_added', loadMessagesFunc);

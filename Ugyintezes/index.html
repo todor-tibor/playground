@@ -16,7 +16,8 @@ limitations under the License.
 -->
 <html>
 <head>
-	
+<title>menu</title>>
+	<link rel = "stylesheet" type = "text/css" href = "main.css" media = "screen">
 	<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
 	<script>
 	  // Initialize Firebase
@@ -79,6 +80,7 @@ limitations under the License.
 
 	          document.getElementById("login").childNodes[0].nodeValue=
 	        	   "Logout";
+	         
 	        } else {
 	            document.getElementById("login").childNodes[0].nodeValue=
 	                   "Login";
@@ -89,6 +91,7 @@ limitations under the License.
 	      document.getElementById('login').addEventListener('click', toggleSignIn, false);
 	      document.getElementById('overview').addEventListener('click', function(){
 	    	  window.location = '/overview.html';
+	    	  
 	      }, false);
 	    }
 	  
@@ -98,11 +101,13 @@ limitations under the License.
 	</script>
 </head>
 <body>
-
-	<header>
-	 
-	    <button id="login" name="login">Login</button>
+    <p><b>WELLCOME</b></p>
+       <p>Click button</p>
+       <div style = "left">
+	    <button id="login" name="login">Login</button><br>
+	    </div><br>
 	    <button id="overview" name="overview">Overview</button>
-	<header>
+	
+
 </body>
 </html>
