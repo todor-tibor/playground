@@ -4,25 +4,23 @@ this.loadMessages();
 this.loadUsers();
 this.loadStatus();
 
-function loadStatus(){
-	var statusRef = firebase.database().ref('status');
+function loadStatus() {
+	var statusRef = firebase.database().ref('Status');
 	statusRef.off();
 
 	var statusSelect = document.getElementById('statusselect');
 	var loadStatusFunc = function(data) {
-		var val = data.val();
 		var option = document.createElement("option");
-		option.text = val.name;
+		option.text = data.val();
 		option.id = data.key;
 		statusSelect.add(option);
 	}.bind(this);
 
 	statusRef.on('child_added', loadStatusFunc);
 }
-function loadUsers(){
-	var usersRef = firebase.database().ref('users');
+function loadUsers() {
+	var usersRef = firebase.database().ref('Users');
 	usersRef.off();
-
 
 	var userSelect = document.getElementById('userselect');
 	var loadUsersFunc = function(data) {
@@ -39,9 +37,8 @@ function loadUsers(){
 var taskEditId = null;
 function loadTasks() {
 
-	var taskRef = firebase.database().ref('tasks');
+	var taskRef = firebase.database().ref('Tasks');
 	taskRef.off();
-
 
 	var loadTasksFunc = function(data) {
 		var val = data.val();
@@ -52,10 +49,10 @@ function loadTasks() {
 	taskRef.on('child_added', loadTasksFunc);
 };
 
-function loadMessages(){
-	var messagesRef = firebase.database().ref('messages');
+function loadMessages() {
+	var messagesRef = firebase.database().ref('Messages');
 	messagesRef.off();
-	
+
 	var loadMessagesFunc = function(data) {
 		var messageTable = document.getElementById('messagetable');
 		var row = messageTable.insertRow(0);
@@ -67,8 +64,8 @@ function loadMessages(){
 }
 
 function loadTasksToTable(key, description, name, status, user) {
-    var usersRef = firebase.database().ref('users');
-    var statusRef = firebase.database().ref('status');
+	var usersRef = firebase.database().ref('Users');
+	var statusRef = firebase.database().ref('Status');
 
 	var taskTable = document.getElementById('table');
 	var lenght = table.rows.length;
@@ -90,26 +87,28 @@ function loadTasksToTable(key, description, name, status, user) {
 
 	cell1.innerHTML = name;
 	cell4.innerHTML = description;
-	cell5.innerHTML = "<button name=\"edit\" id = \"edit"+key+"\">Edit</button>"
-	cell6.innerHTML = "<button name=\"delete\" id = \"delete"+key+"\">Delete</button>"
-	document.getElementById('delete' + key).addEventListener('click',
+	cell5.innerHTML = "<button name=\"edit\" id = \"edit" + key
+			+ "\">Edit</button>"
+	cell6.innerHTML = "<button name=\"delete\" id = \"delete" + key
+			+ "\">Delete</button>"
+	document.getElementById('delete' + key).addEventListener(
+			'click',
 			function() {
-				var messagesRef = firebase.database().ref('messages');
+				var messagesRef = firebase.database().ref('Messages');
 				messagesRef.push({
-					text: "Task deleted with name: " + name + " and user: " + user
+					text : "Task deleted with name: " + name + " and user: "
+							+ user
 				});
-				firebase.database().ref('tasks').child(key).remove();
+				firebase.database().ref('Tasks').child(key).remove();
 				location.reload();
 			}, false);
-	
-	document.getElementById('edit' + key).addEventListener('click',
-			function() {
-				document.getElementById('taskname').value = name;
-				document.getElementById('description').value = description;
-				taskEditId = key;
-			}, false);
-}
 
+	document.getElementById('edit' + key).addEventListener('click', function() {
+		document.getElementById('taskname').value = name;
+		document.getElementById('description').value = description;
+		taskEditId = key;
+	}, false);
+}
 
 function initListeners() {
 	document.getElementById('newtask').addEventListener("submit", function(e) {
@@ -122,10 +121,9 @@ function initListeners() {
 
 		var userSelect = document.getElementById('userselect');
 		var userId = userSelect.options[userSelect.selectedIndex].id;
-		
 
 		if (taskEditId == null) {
-			var taskRef = firebase.database().ref('tasks');
+			var taskRef = firebase.database().ref('Tasks');
 			taskRef.push({
 				name : taskname,
 				description : description,
@@ -135,13 +133,13 @@ function initListeners() {
 				document.getElementById('taskname').value = '';
 				document.getElementById('description').value = '';
 
-				var messagesRef = firebase.database().ref('messages');
+				var messagesRef = firebase.database().ref('Messages');
 				messagesRef.push({
-					text: "New task created with name: " + taskname
+					text : "New task created with name: " + taskname
 				});
 			});
-		}else{
-			var taskRef = firebase.database().ref('tasks/' + taskEditId);
+		} else {
+			var taskRef = firebase.database().ref('Tasks/' + taskEditId);
 			taskRef.set({
 				name : taskname,
 				description : description,
@@ -151,9 +149,9 @@ function initListeners() {
 				document.getElementById('taskname').value = '';
 				document.getElementById('description').value = '';
 
-				var messagesRef = firebase.database().ref('messages');
+				var messagesRef = firebase.database().ref('Messages');
 				messagesRef.push({
-					text: "Task changed with name: " + taskname
+					text : "Task changed with name: " + taskname
 				});
 
 				taskEditId = null;

@@ -3,8 +3,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Wellcome</title>
-<p align ="center"> <font color=red size=6><b>Have nice day </b></font> </p>
-<link rel="stylesheet" type="text/css" href="main.css" media="screen">
+<p align="center">
+	<font color=red size=6><b>Have nice day </b></font>
+</p>
 
 <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
 
@@ -25,54 +26,54 @@
 </head>
 
 <body>
-	
-		<div style="float: left">
-			<table border="0" width="505" cellspacing="0" cellpadding="0">
-				<tbody>
-					<tr>
-						<td>
-							<table border="1" width="500" cellspacing="0" cellpadding="1">
+
+	<div style="float: left">
+		<table border="0" width="505" cellspacing="0" cellpadding="0">
+			<tbody>
+				<tr>
+					<td>
+						<table border="1" width="500" cellspacing="0" cellpadding="1">
+							<tbody>
+								<tr style="color: white; background-color: grey;">
+									<th>Messages</th>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<div style="width: 500px; height: 200px; overflow: auto;">
+							<table id="messagetable" border="1" width="500" cellspacing="0"
+								cellpadding="1">
 								<tbody>
-									<tr style="color: white; background-color: grey;">
-										<th>Messages</th>
-									</tr>
 								</tbody>
 							</table>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<div style="width: 500px; height: 200px; overflow: auto;">
-								<table id="messagetable" border="1" width="500" cellspacing="0"
-									cellpadding="1">
-									<tbody>
-									</tbody>
-								</table>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<div style="">
-
-			<table border="1 " id="table" cellpadding="10">
-				<caption align="center">
-					<font color=red size=6></font>
-				</caption>
-				<tr>
-					<th><b>Error</b></th>
-					<th><b>Status</b></th>
-					<th><b>User</b></th>
-					<th><b>Description</b></th>
+						</div>
+					</td>
 				</tr>
-			</table>
-		</div>
-	
+			</tbody>
+		</table>
+	</div>
+	<div style="">
+
+		<table border="1 " id="table" cellpadding="10">
+			<caption align="center">
+				<font color=red size=6></font>
+			</caption>
+			<tr>
+				<th><b>Error</b></th>
+				<th><b>Status</b></th>
+				<th><b>User</b></th>
+				<th><b>Description</b></th>
+			</tr>
+		</table>
+	</div>
+
 
 
 	<form id="newtask" method="post">
-		<div style="marging-center">
+		<div style="">
 			<br> <font color=red size=6>Create new task or update</font><br>
 			<b>Name:</b> <br> <input type="text" name="taskname" value=""
 				id="taskname"> <br> <br> <b>Status:</b><select

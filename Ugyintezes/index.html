@@ -17,9 +17,8 @@ limitations under the License.
 <html>
 <head>
 <title>menu</title>>
-	<link rel = "stylesheet" type = "text/css" href = "main.css" media = "screen">
-	<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
-	<script>
+<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+<script>
 	  // Initialize Firebase
 	  var config = {
 	    apiKey: "AIzaSyB8VyuAf6Ihc4-RdmK45NZJ9RE5i5lH-zg",
@@ -30,8 +29,8 @@ limitations under the License.
 	  };
 	  firebase.initializeApp(config);
 	</script>
-	  
-	<script>
+
+<script>
 	  function toggleSignIn() {
 	      if (!firebase.auth().currentUser) {
 	        // [START createprovider]
@@ -88,11 +87,22 @@ limitations under the License.
 	        }
 	      });
 	      // [END authstatelistener]
-	      document.getElementById('login').addEventListener('click', toggleSignIn, false);
-	      document.getElementById('overview').addEventListener('click', function(){
-	    	  window.location = '/overview.html';
+	      document.getElementById('login2').addEventListener('click', toggleSignIn, false);
+	      
+	       document.getElementById('login').addEventListener('click', function(){
+	              window.location = '/login.html';
+	              
+	          }, false);
+	       
+	      document.getElementById('register').addEventListener('click', function(){
+	    	  window.location = '/register.html';
 	    	  
 	      }, false);
+	      
+	       document.getElementById('overview').addEventListener('click', function(){
+	              window.location = '/overview.html';
+	              
+	          }, false);
 	    }
 	  
 	  window.onload = function() {
@@ -101,13 +111,19 @@ limitations under the License.
 	</script>
 </head>
 <body>
-    <p><b>WELLCOME</b></p>
-       <p>Click button</p>
-       <div style = "left">
-	    <button id="login" name="login">Login</button><br>
-	    </div><br>
-	    <button id="overview" name="overview">Overview</button>
-	
+	<p>
+		<b>WELLCOME</b>
+	</p>
+	<p>Click button</p>
+	<div style="">
+		<button id="login2" name="login">Login2</button>
+		<br>
+	</div>
+	<br>
+	<button id="overview" name="overview">Overview</button>
+	<br>
+	<button id="register" name="register">Register</button>
+	<button id="login" name="login">Login</button>
 
 </body>
 </html>
