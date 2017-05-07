@@ -7,9 +7,8 @@ this.loadUsers();
 var currentUserId;
 
 firebase.auth().onAuthStateChanged(function(user) {
-	console.log(user);
 	if (user) {
-		currentUser = user.uid;
+		currentUserId = user.uid;
 	}
 });
 
@@ -57,6 +56,7 @@ document.getElementById('newtask').addEventListener("submit", function(e) {
 
 	if (taskEditId == null) {
 		var taskRef = firebase.database().ref('Tasks');
+		console.log(currentUserId);
 		taskRef.push({
 			ReporterUserId : currentUserId,
 			TaskDate : Date.now(),
