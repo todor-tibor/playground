@@ -39,7 +39,7 @@ function register() {
 					LastName : lastName,
 					Role : roleId
 				})
-				window.location = '/overview.html';
+				window.location = '/messages.html';
 			});
 	
 	return false;

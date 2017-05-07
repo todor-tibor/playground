@@ -20,6 +20,16 @@
 
 </head>
 <body>
+
+	<script>
+		var user = firebase.auth().currentUser;
+		if (user) {
+			window.location = '/messages.html';
+		}
+	</script>
+	<script src="scripts/login.js">
+		
+	</script>
 	<div class="container">
 		<div class="row">
 
@@ -66,10 +76,6 @@
 
 		</div>
 	</div>
-
-	<script src="scripts/login.js">
-		
-	</script>
 
 </body>
 </html>

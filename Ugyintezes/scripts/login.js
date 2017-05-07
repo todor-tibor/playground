@@ -3,6 +3,8 @@
  */
 
 function login() {
+	window.alert("login function");
+
 	var user = firebase.auth().currentUser;
 	if (!user) {
 		var email = document.getElementById('email').value;
@@ -12,15 +14,13 @@ function login() {
 		firebase.auth().onAuthStateChanged(function(user) {
 
 			if (user) {
-				window.alert("log in siker");
-				window.location = '/overview.html';
+				window.location = '/messages.html';
 			} else {
 				window.alert("nem tudott belogolni");
 			}
 		});
 	} else {
-		window.alert("mar bejelentkezve mint: + " + user.email);
-		window.location = '/overview.html';
+		window.location = '/messages.html';
 	}
 	return false;
 }

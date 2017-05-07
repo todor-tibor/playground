@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Create Task</title>
+
+<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
+
+<script>
+	// Initialize Firebase
+	var config = {
+		apiKey : "AIzaSyB8VyuAf6Ihc4-RdmK45NZJ9RE5i5lH-zg",
+		authDomain : "ugyintezes-2f366.firebaseapp.com",
+		databaseURL : "https://ugyintezes-2f366.firebaseio.com",
+		storageBucket : "ugyintezes-2f366.appspot.com",
+		messagingSenderId : "550320197469"
+	};
+	firebase.initializeApp(config);
+</script>
+
+<style>
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: rgb(155, 155, 155);
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: inline-block;
+	color: black;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover {
+	background-color: rgb(255, 255, 255);
+}
+</style>
+</head>
+<body>
+	<ul id="list">
+		<li><a href="/messages.html">Messages</a></li>
+		<li><a href="/tasks.html">Tasks</a></li>
+		<li><a href="/createtasks.html">Create Tasks</a></li>
+		<li class="user"><script>
+			firebase.auth().onAuthStateChanged(function(user) {
+				if (user) {
+					var ul = document.getElementById("list");
+					document.createElement("ul")
+					var li = document.createElement("li");
+
+					li.appendChild(document.createTextNode(user.email));
+					ul.appendChild(li);
+				} else {
+					window.alert("nincs beloggolva");
+				}
+			});
+		</script></li>
+	</ul>
+
+	<form id="newtask" method="post">
+		<div style="">
+			<br> <font color=red size=6>Create new task or update</font><br>
+			<b>Name:</b> <br> <input type="text" name="taskname" value=""
+				id="taskname"> <br> <br> <b>Status:</b><select
+				id="statusselect"></select> <br> <br> <b>Description:</b>
+			<br> <input type="text" name="description" value=""
+				id="description"><br> <br> <b>User:</b><select
+				id="userselect"></select> <br> <br> <input type="submit"
+				value="Submit"><br>
+		</div>
+	</form>
+	<script src="scripts/createtasks.js">
+		
+	</script>
+</body>
+</html>
