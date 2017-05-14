@@ -150,8 +150,9 @@ main, #messages-card {
 #user-container #user-name {
   font-size: 16px;
   line-height: 36px;
-  padding-right: 10px;
-  padding-left: 20px;
+  padding-right:500px;
+  padding-left: 500px;
+
 }
 #image-form #submitImage {
   width: auto;

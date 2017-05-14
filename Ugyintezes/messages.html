@@ -61,6 +61,16 @@ li a:hover {
 				}
 			});
 		</script></li>
+        <li><button id = "logout" type="button">Logout</button>
+                                    <script>
+                                    document.getElementById('logout').addEventListener('click',
+                                    		function(e) {
+                                        		firebase.auth().signOut();
+                                        		window.location = '/login.html';
+                                    		}, false);
+
+                                    </script>
+        </li>
 	</ul>
 
 	<div style="float: left">

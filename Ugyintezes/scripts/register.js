@@ -27,6 +27,17 @@ function register() {
 	var password = document.getElementById('password').value;
 	var roleId = roleSelect.options[roleSelect.selectedIndex].id;
 
+	var index = 0;
+	var userArray = [];
+	var subordinateUsers = firebase.database().ref('Users');
+	subordinateUsers.on("child_added", function(user) {
+		if (user.val().Role > roleId) {
+			userArray[index] = user.key;
+			index++;
+		}
+	});
+
+	console.log(userArray);
 	// registralja a firebase-ben a felhasznalot
 	firebase.auth().createUserWithEmailAndPassword(email, password).then(
 			function(user) {
@@ -37,10 +48,11 @@ function register() {
 					EMail : email,
 					FirstName : firstName,
 					LastName : lastName,
-					Role : roleId
+					Role : roleId,
+					SubordinateUserIds : userArray
 				})
 				window.location = '/messages.html';
 			});
-	
+
 	return false;
 }

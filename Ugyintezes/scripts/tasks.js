@@ -33,7 +33,6 @@ function loadTasksToTable(key, description, tasktitle, status, users, date) {
 
 	for (i = 0; i < users.length; i++) {
 		usersRef.child(users[i]).once('value', function(snapshot) {
-			console.log(snapshot.val().EMail);
 			cell3.innerHTML += snapshot.val().EMail + ",";
 		});
 	}
@@ -59,10 +58,7 @@ function loadTasksToTable(key, description, tasktitle, status, users, date) {
 				location.reload();
 			}, false);
 
-	// document.getElementById('edit' + key).addEventListener('click',
-	// function() {
-	// document.getElementById('taskname').value = name;
-	// document.getElementById('description').value = description;
-	// taskEditId = key;
-	// }, false);
+	 document.getElementById('edit' + key).addEventListener('click', function() {
+		window.location = '/createtasks.html?taskid='+key;
+	}, false);
 }

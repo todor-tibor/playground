@@ -3,9 +3,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Create Task</title>
-
 <script src="https://www.gstatic.com/firebasejs/3.6.9/firebase.js"></script>
-
 <script>
 	// Initialize Firebase
 	var config = {
@@ -17,7 +15,6 @@
 	};
 	firebase.initializeApp(config);
 </script>
-
 <style>
 ul {
 	list-style-type: none;
@@ -45,40 +42,87 @@ li a:hover {
 </style>
 </head>
 <body>
-	<ul id="list">
-		<li><a href="/messages.html">Messages</a></li>
-		<li><a href="/tasks.html">Tasks</a></li>
-		<li><a href="/createtasks.html">Create Tasks</a></li>
-		<li class="user"><script>
-			firebase.auth().onAuthStateChanged(function(user) {
-				if (user) {
-					var ul = document.getElementById("list");
-					document.createElement("ul")
-					var li = document.createElement("li");
+    <ul id="list">
+        <li><a href="/messages.html">Messages</a></li>
+        <li><a href="/tasks.html">Tasks</a></li>
+        <li><a href="/createtasks.html">Create Tasks</a></li>
+        <li class="user"><script>
+									firebase
+											.auth()
+											.onAuthStateChanged(
+													function(user) {
+														if (user) {
+															var ul = document
+																	.getElementById("list");
+															document
+																	.createElement("ul")
+															var li = document
+																	.createElement("li");
 
-					li.appendChild(document.createTextNode(user.email));
-					ul.appendChild(li);
-				} else {
-					window.alert("nincs beloggolva");
-				}
-			});
-		</script></li>
-	</ul>
+															li
+																	.appendChild(document
+																			.createTextNode(user.email));
+															ul.appendChild(li);
+														} else {
+															window
+																	.alert("nincs beloggolva");
+														}
+													});
+								</script></li>
+                                <li class="user"><button id = "logout" type="button">Logout</button>
+                                    <script>
+                                    document.getElementById('logout').addEventListener('click',
+                                    		function(e) {
+                                        		firebase.auth().signOut();
+                                        		window.location = '/login.html';
+                                    		}, false);
 
-	<form id="newtask" method="post">
-		<div style="">
-			<br> <font color=red size=6>Create new task or update</font><br>
-			<b>Name:</b> <br> <input type="text" name="taskname" value=""
-				id="taskname"> <br> <br> <b>Status:</b><select
-				id="statusselect"></select> <br> <br> <b>Description:</b>
-			<br> <input type="text" name="description" value=""
-				id="description"><br> <br> <b>User:</b><select
-				id="userselect"></select> <br> <br> <input type="submit"
-				value="Submit"><br>
-		</div>
-	</form>
-	<script src="scripts/createtasks.js">
-		
-	</script>
+                                    </script>
+                                </li>
+    </ul> 
+    <form id="newtask" method="post">
+        <div style="">
+            <br>
+            <font color=red size=6>Create new task or update</font>
+            <br>
+            <b>Name:</b>
+            <br>
+            <input type="text" name="taskname" value="" id="taskname">
+            <br>
+            <br>
+            <b>Status:</b>
+            <br>
+            <select id="statusselect"></select>
+            <br>
+            <br>
+            <b>Description:</b>
+            <br>
+            <input type="text" name="description" value=""
+                id="description">
+            <br>
+            <br>
+            <b>User:</b>
+            <br>
+            <select id="userselect"></select>
+            <br>
+            <br>
+            <button type="button" id="adduser">Add user</button>
+            <div style="">
+                <table border="1 " id="usertable" cellpadding="10">
+                    <caption align="center">
+                        <font color=red size=6></font>
+                    </caption>
+                    <tr>
+                        <th><b>Assigned users</b></th>
+                        <th><b>Remove users</b></th>
+                    </tr>
+                </table>
+            </div>
+            <br>
+            <input type="submit" value="Submit">
+            <br>
+        </div>
+    </form>
+    <script src="scripts/createtasks.js"></script>
 </body>
 </html>
